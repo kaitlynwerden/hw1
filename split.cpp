@@ -1,5 +1,4 @@
 /*
-CSCI 104: Homework 1 Problem 1
 
 Write a recursive function to split a sorted singly-linked
 list into two sorted linked lists, where one has the even 
@@ -12,15 +11,44 @@ the function below should be the only one in this file.
 
 #include "split.h"
 
-/* Add a prototype for a helper function here if you need */
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
-
+  splitHelper(in, odds, evens);
+  in = nullptr;
 }
 
-/* If you needed a helper function, write it here */
+/* Add a prototype for a helper function here if you need */
 
-// WRITE YOUR CODE HERE
+void splitHelper(Node*& in, Node*& odds, Node*& evens)
+{
+  // check for the base case
+  // check if the current node is null
+  if (in == nullptr)
+  {
+    return;
+  }
+  
+  // 	return;
+  
+  // recursive step
+  split(in->next, odds, evens);
+  // go to the next node after 'in'
+  
+  // do the work
+  // put the 'in' Node into odds or evens
+  if (in->value %2 != 0)
+  {
+    Node* prevOdds = odds;
+    odds = in;
+    odds->next = prevOdds;
+  }
+  
+  else
+  {
+    Node* prevEvens = evens;
+    evens = in;
+    evens->next = prevEvens;
+  }
+    
+}
